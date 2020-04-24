@@ -1,22 +1,14 @@
 version: 2.1
 
-orbs:
- android: circleci/android@0.2.0
-
 jobs:
   build:
-    executor: android/android
-    steps:
-      - checkout
-      - run:
-          command: ./gradlew build
     docker:
       - image: 'circleci/openjdk:11-jdk'
     steps:
       - checkout
       - run:
           name: Analyze on SonarCloud
-          command: gradle build sonarqube
+          command: gradle build sonarqube"
 
 workflows:
   main:
