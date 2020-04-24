@@ -22,18 +22,21 @@ repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    google()
 }
 
 dependencies {
     // This dependency is found on compile classpath of this component and consumers.
     compile 'com.google.guava:guava:21.0'
+    classpath 'com.android.tools.build:gradle:3.5.3'
+
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
 }
 
 // Define the main class for the application
-mainClassName = 'App'
+// mainClassName = 'App'
 
 jacocoTestReport {
     reports {
