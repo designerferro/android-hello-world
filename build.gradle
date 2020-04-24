@@ -1,45 +1,42 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    id "jacoco"
+    id "java"
+    id "application"
+    id "org.sonarqube" version "2.8"
+}
 
-buildscript {
+description = 'Example of SonarCloud for Gradle Usage'
+version = '1.0'
 
-  plugins {
-    id 'org.sonarqube' version '2.8'
-  }
-  
-  sonarqube {
+sonarqube {
     properties {
-        property 'sonar.projectName', 'android-hello-world '
+        property 'sonar.projectName', 'android-hello-world'
         property 'sonar.projectKey', 'designerferro_android-hello-world'
         property 'sonar.organization', 'designerferro-github'
         property 'sonar.host.url', 'https://sonarcloud.io'
-     //   property 'sonar.tests', ['src/test/java']
-     //   property 'sonar.test.inclusions', '**/*Test*/**'
-        property 'sonar.sourceEncoding', 'UTF-8'
-        property 'sonar.sources', '.'
-        property 'sonar.exclusions', '**/*Test*/**,' +
-                '*.json,' +
-                '**/*test*/**,' +
-                '**/.gradle/**,' +
-                '**/R.class'
-               }
-          }
-  
-  repositories {
-    jcenter()
-    google()
-  }
-  dependencies {
-      classpath 'com.android.tools.build:gradle:3.5.3'
-
-    // NOTE: Do not place your application dependencies here; they belong
-    // in the individual module build.gradle files
-  }
-// }
-
-allprojects {
-  repositories {
-    jcenter()
-    google()
-  }
+    }
 }
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    // Use jcenter for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+dependencies {
+    // This dependency is found on compile classpath of this component and consumers.
+    compile 'com.google.guava:guava:21.0'
+
+    // Use JUnit test framework
+    testCompile 'junit:junit:4.12'
+}
+
+// Define the main class for the application
+mainClassName = 'App'
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
 }
